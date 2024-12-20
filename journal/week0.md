@@ -156,7 +156,7 @@ aws sns subscribe --topic-arn "arn:aws:sns:ca-central-1:891377298769:billing-ala
   }]
 }
 
-# Command Line Interface to Create the cloudwatch alarm
+# Command Line Interface to Create the CloudWatch Alarm
 aws cloudwatch put-metric-alarm --cli-input-json file://aws/json/alarm-config.json
 
 
