@@ -75,6 +75,7 @@ aws sns subscribe \
     --topic-arn TopicARN \
     --protocol email \
     --notification-endpoint your@email.com
+
 Check your email and confirm the subscription
 
 Create Alarm
@@ -83,7 +84,9 @@ aws cloudwatch put-metric-alarm
 Create an Alarm via AWS CLI
 We need to update the configuration json script with the TopicARN we generated earlier
 We are just a json file because --metrics is is required for expressions and so its easier to us a JSON file.
+
 aws cloudwatch put-metric-alarm --cli-input-json file://aws/json/alarm_config.json
+
 Create an AWS Budget
 
 aws budgets create-budget
@@ -94,7 +97,72 @@ aws sts get-caller-identity --query Account --output text
 Supply your AWS Account ID
 Update the json files
 This is another case with AWS CLI its just much easier to json files due to lots of nested json
+
+# This is using AWS to Create a Budget
+
 aws budgets create-budget \
-    --account-id AccountID \
+    --account-id $ACCOUNT_ID \
     --budget file://aws/json/budget.json \
     --notifications-with-subscribers file://aws/json/budget-notifications-with-subscribers.json
+
+
+# Create SNS Topic
+
+aws sns create-topic --name billing-alarm(Name Of Topic)
+
+
+# Create SNS Subscribe
+aws sns subscribe --topic-arn "arn:aws:sns:ca-central-1:891377298769:billing-alarm" --protocol email --notification-endpoint "yykdigital@hotmail.com"
+
+
+
+# Create the Alarm Config
+
+
+{
+  "AlarmName": "DailyEstimatedCharges",
+  "AlarmDescription": "This alarm would be triggered if the daily estimated charges exceeds 1$",
+  "ActionsEnabled": true,
+  # Creating an AlarmActions
+  "AlarmActions": [
+      "arn:aws:sns:ca-central-1:891377298769:billing-alarm"
+  ],
+  "EvaluationPeriods": 1,
+  "DatapointsToAlarm": 1,
+  "Threshold": 1,
+  "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+  "TreatMissingData": "breaching",
+  "Metrics": [{
+      "Id": "m1",
+      "MetricStat": {
+          "Metric": {
+              "Namespace": "AWS/Billing",
+              "MetricName": "EstimatedCharges",
+              "Dimensions": [{
+                  "Name": "Currency",
+                  "Value": "USD"
+              }]
+          },
+          "Period": 86400,
+          "Stat": "Maximum"
+      },
+      "ReturnData": false
+  },
+  {
+      "Id": "e1",
+      "Expression": "IF(RATE(m1)>0,RATE(m1)*86400,0)",
+      "Label": "DailyEstimatedCharges",
+      "ReturnData": true
+  }]
+}
+
+# Command Line Interface to Create the cloudwatch alarm
+aws cloudwatch put-metric-alarm --cli-input-json file://aws/json/alarm-config.json
+
+
+ 
+
+
+
+
+
