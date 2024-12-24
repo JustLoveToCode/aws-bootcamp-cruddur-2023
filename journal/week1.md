@@ -107,9 +107,9 @@ We have to run NPM Install before building the container since it needs to copy 
 
 cd frontend-react-js
 npm i
-Create Docker File
+Create Docker File in the FrontEnd called Dockerfile
 
-Create a file here: frontend-react-js/Dockerfile
+# Create a file here: frontend-react-js/Dockerfile
 
 FROM node:16.18
 
@@ -120,6 +120,7 @@ WORKDIR /frontend-react-js
 RUN npm install
 EXPOSE ${PORT}
 CMD ["npm", "start"]
+
 Build Container
 
 docker build -t frontend-react-js ./frontend-react-js
@@ -130,7 +131,8 @@ Multiple Containers
 
 Create a docker-compose file
 
-Create docker-compose.yml at the root of your project.
+# Create docker-compose.yml at the root of your project.
+# Docker Compose Allowed You to Orchestrate the Different Containers to Work Together Locally
 
 version: "3.8"
 services:
@@ -158,6 +160,10 @@ networks:
   internal-network:
     driver: bridge
     name: cruddur
+
+
+
+
 Adding DynamoDB Local and Postgres
 
 We are going to use Postgres and DynamoDB local in future labs We can bring them in as containers and reference them externally
