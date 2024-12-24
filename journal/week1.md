@@ -219,3 +219,10 @@ volumes:
 volumes:
   db:
     driver: local
+
+
+# This is the Docker Command that You will need to Run HERE
+docker run --rm -p 4567:4567 -it -e FRONTEND_URL='*' -e BACKEND_URL='*' backend-flask
+
+# Website URL to Access to get the API HERE
+https://4567-justlovetoc-awsbootcamp-w0vblsyfb00.ws-us117.gitpod.io/api/activities/home
