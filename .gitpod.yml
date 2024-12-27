@@ -1,7 +1,7 @@
 tasks:
   - name: aws-cli
     env:
-      AWS_CLI_AUTO_PROMPT: "on-partial"  # Enable Partial Auto Prompt Mode
+      AWS_CLI_AUTO_PROMPT: on-partial  # Enable Partial Auto Prompt Mode
     init: |
       cd /workspace
       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -9,11 +9,10 @@ tasks:
       sudo ./aws/install
       rm -rf awscliv2.zip 
 
-      # Verify installation
       aws --version
 
       cd $THEIA_WORKSPACE_ROOT
-
+      
 vscode:
   extensions:
     - 42Crunch.vscode-openapi  # Install OpenAPI extension for VSCode
