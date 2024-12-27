@@ -194,7 +194,9 @@ To install the postgres client into Gitpod
       echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list
       sudo apt update
       sudo apt install -y postgresql-client-13 libpq-dev
-DynamoDB Local
+
+
+# DynamoDB Local
 
 services:
   dynamodb-local:
