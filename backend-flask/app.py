@@ -3,6 +3,8 @@ from flask import request
 from flask_cors import CORS, cross_origin
 import os
 
+# services is the folder, home_activities is basically the File Here For Example
+# You can use this Method to Import the File from Inside the Folder
 from services.home_activities import *
 from services.user_activities import *
 from services.create_activity import *
@@ -63,13 +65,13 @@ def data_create_message():
     return model['data'], 200
   return
 
-# app.route("/api/activities/home")
+
 @app.route("/api/activities/home", methods=['GET'])
 def data_home():
   data = HomeActivities.run()
   return data, 200
 
-# app.route("/api/activities/notifications")
+
 @app.route("/api/activities/notifications", methods=['GET'])
 def data_notifications():
   data = NotificationsActivities.run()
