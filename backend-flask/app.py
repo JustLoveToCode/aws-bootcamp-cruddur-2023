@@ -16,7 +16,7 @@ from services.create_message import *
 from services.show_activity import *
 from services.notifications_activities import *
 
-# Import the opentelemetry
+# Import the opentelemetry Here
 from opentelemetry import trace
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.requests import RequestsInstrumentor
