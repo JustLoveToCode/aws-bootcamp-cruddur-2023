@@ -2,6 +2,9 @@
 # Docker is used to Build the Container Image
 FROM python:3.10-slim-buster
 
+# Setting the Environment Variable for HONEYCOMB_API_KEY
+ENV HONEYCOMB_API_KEY="2ibXxcyP3bnGUBztMk1GDB"
+
 # Inside Container
 # Make a New Folder Inside the Container
 WORKDIR /backend-flask
