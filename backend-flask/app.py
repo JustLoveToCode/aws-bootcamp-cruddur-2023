@@ -25,6 +25,7 @@ from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.sdk.trace.export import ConsoleSpanExporter,SimpleSpanProcessor
 
+
 # Initialize the Tracing and an Exporter that can SEND the Data to the Honeycomb.io
 provider = TracerProvider()
 # Creating the processor Variable Here
@@ -38,8 +39,8 @@ provider.add_span_processor(simple_processor)
 
 
 
-tracer.set_tracer_provider(provider)
-tracer = tracer.get_tracer(__name__)
+trace.set_tracer_provider(provider)
+tracer = trace.get_tracer(__name__)
 
 app = Flask(__name__)
 
