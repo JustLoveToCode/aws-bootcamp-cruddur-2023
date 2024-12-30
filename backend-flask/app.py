@@ -16,7 +16,7 @@ from services.create_message import *
 from services.show_activity import *
 from services.notifications_activities import *
 
-# Import the opentelemetry Here
+# from opentelemetry import Here
 from opentelemetry import trace
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.requests import RequestsInstrumentor
@@ -24,7 +24,20 @@ from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExport
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
+# Initialize the Tracing and an Exporter that can SEND the Data to the Honeycomb.io
+provider = TracerProvider()
+processor = BatchSpanProcessor(OTLPSpanExporter())
+provider.add_span_processor(processor)
+trace.set_tracer_provider(provider)
+tracer = trace.get_tracer(__name__)
+
+
 app = Flask(__name__)
+
+# Initialize Automatic Instrumentation with Flask App
+FlaskInstrumentor().instrument_app(app)
+RequestsInstrumentor().instrument()
+
 
 # Getting the Environment Variables
 frontend = os.getenv('FRONTEND_URL')
