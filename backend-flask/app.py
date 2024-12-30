@@ -16,7 +16,7 @@ from services.create_message import *
 from services.show_activity import *
 from services.notifications_activities import *
 
-# from opentelemetry import Here
+# HoneyComb.io
 from opentelemetry import trace
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.requests import RequestsInstrumentor
@@ -26,7 +26,7 @@ from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.sdk.trace.export import ConsoleSpanExporter,SimpleSpanProcessor
 
 
-# Initialize the Tracing and an Exporter that can SEND the Data to the Honeycomb.io
+# Initialize the Tracing and an Exporter that can SEND THE DATA to the Honeycomb.io
 provider = TracerProvider()
 # Creating the processor Variable Here
 processor = BatchSpanProcessor(OTLPSpanExporter())
@@ -44,6 +44,7 @@ tracer = trace.get_tracer(__name__)
 
 app = Flask(__name__)
 
+
 # Initialize Automatic Instrumentation with Flask Application
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
@@ -52,7 +53,9 @@ RequestsInstrumentor().instrument()
 # Getting the Environment Variables
 frontend = os.getenv('FRONTEND_URL')
 backend = os.getenv('BACKEND_URL')
+
 origins = [frontend, backend]
+
 cors = CORS(
   app, 
   resources={r"/api/*": {"origins": origins}},
