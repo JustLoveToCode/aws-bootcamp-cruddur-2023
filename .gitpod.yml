@@ -1,16 +1,21 @@
-# Automate the Downloading of the AWS CLI
 tasks:
   - name: aws-cli
     env:
       AWS_CLI_AUTO_PROMPT: on-partial
     init: |
       cd /workspace
+      echo "Current Directory: $(pwd)"  # Check if we're in the right directory
       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      if [ $? -eq 0 ]; then echo "AWS CLI Zip Downloaded Successfully"; else echo "AWS CLI Download Failed"; fi
       unzip awscliv2.zip
+      if [ $? -eq 0 ]; then echo "AWS CLI Unzipped Successfully"; else echo "AWS CLI Unzip Failed"; fi
       sudo ./aws/install
+      if [ $? -eq 0 ]; then echo "AWS CLI Installed Successfully"; else echo "AWS CLI Install Failed"; fi
       cd $THEIA_WORKSPACE_ROOT
-      
-# To Install Postgres Client into Gitpod Extension
+  - name: react-js
+    command: |
+      cd frontend-react-js
+      npm i
   - name: postgres
     init: |
       curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
