@@ -9,6 +9,7 @@ gp env AWS_REGION="ca-central-1"
 Add to the requirements.txt
 
 aws-xray-sdk
+
 Install pythonpendencies
 
 pip install -r requirements.txt
@@ -20,6 +21,7 @@ from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 xray_url = os.getenv("AWS_XRAY_URL")
 xray_recorder.configure(service='Cruddur', dynamic_naming=xray_url)
 XRayMiddleware(app, xray_recorder)
+
 Setup AWS X-Ray Resources
 
 Add aws/json/xray.json
