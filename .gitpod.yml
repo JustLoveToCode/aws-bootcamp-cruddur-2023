@@ -23,6 +23,7 @@ vscode:
   extensions:
     - 42Crunch.vscode-openapi 
     - cweijan.vscode-mysql-client2
+    - cweijan.dbclient-jdbc
 
 ports:
   - name: frontend
