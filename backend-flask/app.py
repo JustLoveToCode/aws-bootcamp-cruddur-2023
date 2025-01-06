@@ -54,6 +54,7 @@ from time import strftime
 
 # Initialize the Tracing and an Exporter that can SEND THE DATA to the Honeycomb.io
 provider = TracerProvider()
+
 # Creating the processor Variable Here
 processor = BatchSpanProcessor(OTLPSpanExporter())
 provider.add_span_processor(processor)
