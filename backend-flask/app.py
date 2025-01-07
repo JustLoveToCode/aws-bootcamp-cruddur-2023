@@ -70,8 +70,8 @@ provider.add_span_processor(processor)
 
 # Creating the simple_processor Variable Here
 # Show this in the Log within the backend-flask App
-simple_processor = SimpleSpanProcessor(ConsoleSpanExporter())
-provider.add_span_processor(simple_processor)
+# simple_processor = SimpleSpanProcessor(ConsoleSpanExporter())
+# provider.add_span_processor(simple_processor)
 
 
 
