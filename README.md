@@ -32,3 +32,7 @@ The `/journal` directory contains
 - [ ] [Week 12](journal/week12.md)
 - [ ] [Week 13](journal/week13.md)
 
+
+export ROLLBAR_ACCESS_TOKEN="4becc6baf442403da3a6ab3ef9ab3503"
+gp env ROLLBAR_ACCESS_TOKEN="4becc6baf442403da3a6ab3ef9ab3503"
+
