@@ -1,0 +1,14 @@
+{
+    "name": "Cruddur Configuration",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "features":{
+        "ghcr.io/devcontainers/features/aws-cli:1":{}
+    },
+    "customizations":{
+        "vscode":{
+            "extensions":[
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    }
+}
